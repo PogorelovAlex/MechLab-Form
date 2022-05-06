@@ -7,12 +7,12 @@ import {useContext, useState} from 'react';
 
 const AddForm = () =>{
 
-    const {addEmployee, sortedEmployees} = useContext(EmployeeContext);
+    const {addEmployee, employees} = useContext(EmployeeContext);
 
     const [newEmployee, setNewEmployee] = useState({
         name:"",gental:"",email:"",birthday:""
     });
-     const sortedEmployeesKeys = sortedEmployees.length>=1 ? Object.keys(sortedEmployees[0]):['name','gental','email','birthday'];
+     const employeesKeys = employees.length>=1 ? Object.keys(employees[0]):['name','gental','email','birthday'];
     const onInputChange = (e) => {
         setNewEmployee({...newEmployee,[e.target.name]: e.target.value})
     }
@@ -27,7 +27,7 @@ const AddForm = () =>{
 
          <Form onSubmit={handleSubmit}>
             
-             {sortedEmployeesKeys.map((item, index) => {
+             {employeesKeys.map((item, index) => {
                if (item !== 'id') { 
                      return (   
                 <Form.Group as={Row} key={`${index}+${item}`} >

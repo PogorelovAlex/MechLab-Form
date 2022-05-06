@@ -7,7 +7,7 @@ import AddColumnForm from './AddColumnForm';
 
 const EmployeeList = () => {
 
-    const {sortedEmployees} = useContext(EmployeeContext);
+    const {employees} = useContext(EmployeeContext);
 
     const [showAlert, setShowAlert] = useState(false);
 
@@ -39,9 +39,9 @@ const EmployeeList = () => {
         return () => {
             handleShowAlert();
         }
-    }, [sortedEmployees])
+    }, [employees])
 
-    const sortedEmployeesKeys = sortedEmployees.length>=1 ? Object.keys(sortedEmployees[0]):[];
+    const employeesKeys = employees.length>=1 ? Object.keys(employees[0]):[];
    
     return (
     <>
@@ -61,9 +61,9 @@ const EmployeeList = () => {
                 <thead  className="table-dark">
             <tr>
                         {
-                           sortedEmployeesKeys.map((item, index) => {
+                           employeesKeys.map((item, index) => {
                                 if (item !== 'id') {
-                                    return <td key={`${index}+${sortedEmployeesKeys[index]}`}>{item}</td>
+                                    return <td key={`${index}+${employeesKeys[index]}`}>{item}</td>
                                 }
                            })}
                         <td>
@@ -81,7 +81,7 @@ const EmployeeList = () => {
         <tbody>
 
                 {
-                        sortedEmployees.map(employee => {
+                        employees.map(employee => {
                             return (<tr key={employee.id}>
                                 <Employee employee={employee} id={employee.id} />
                             </tr>
